@@ -20,7 +20,7 @@ LOGGING = {
             'formatter': 'standard',
             'class': 'elk.BulkUdp',
             'host': os.getenv('ELK_SERVER'),
-            'port': int(os.getenv('ELK_PORT')),
+            'port': int(os.getenv('ELK_PORT', 0)),
             'service': os.getenv('ELK_SERVICE'),
         },
     },
