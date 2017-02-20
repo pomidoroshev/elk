@@ -97,6 +97,7 @@ class BulkUdp(DatagramHandler):
         if type(record.msg) is dict:
             fields = record.msg
             message = fields.get('message', record.getMessage())
+            del fields['message']
         else:
             message = record.getMessage()
 
