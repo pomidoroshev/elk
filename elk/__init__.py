@@ -84,7 +84,6 @@ class BulkUdp(DatagramHandler):
                     break
 
             packet += "}\n"
-            print(packet)
             self.send(packet.encode())
         except (KeyboardInterrupt, SystemExit):
             raise
