@@ -1,15 +1,25 @@
-import json
-import socket
-import time
 import datetime
-
+import json
+import logging
 from logging.handlers import DatagramHandler
+import socket
+import sys
+import time
+import traceback
 
 SKIP_EXTRA_FIELDS = set(['args', 'asctime', 'created', 'exc_info',  'exc_text',
                          'filename', 'funcName', 'id', 'levelname', 'levelno',
                          'lineno', 'module', 'msecs', 'msecs', 'message',
                          'msg', 'name', 'pathname', 'process', 'processName',
                          'relativeCreated', 'thread', 'threadName'])
+
+
+def exc_handler(exc_type, value, tb):
+    lines = traceback.format_exception(exc_type, value, tb)
+    logging.exception('Uncaught exception: %s' % ''.join(lines))
+
+
+sys.excepthook = exc_handler
 
 
 class BulkUdp(DatagramHandler):
