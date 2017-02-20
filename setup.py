@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='elk',
-    version='0.0.3',
+    version='0.0.4',
     packages=['elk'],
     description='ELK Logging Supporg',
     url='http://github.com/pomidoroshev/elk',

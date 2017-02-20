@@ -92,7 +92,16 @@ class BulkUdp(DatagramHandler):
 
     def _generate_fields(self, record):
         yield "@version", "1"
-        yield "message", record.getMessage()
+
+        fields = {}
+        if type(record.msg) is dict:
+            fields = record.msg
+            message = fields.get('message', record.getMessage())
+        else:
+            message = record.getMessage()
+
+        yield "@fields", fields
+        yield "message", message
 
         if self.fqdn:
             yield "logsource", socket.getfqdn()
